@@ -7,8 +7,8 @@ import AuthenticatedRoute from '@/components/AuthenticatedRoute';
 import MainLayout from '@/pages/MainLayout';
 import LeadgensPage from '@/pages/LeadgensPage';
 import NewLeadgenPage from '@/pages/NewLeadgenPage';
-import ErrorPage from './pages/ErrorPage';
-import LeadgenDetailPage from './pages/LeadgenDetailPage';
+import ErrorPage from '@/pages/ErrorPage';
+import LeadgenDetailPage from '@/pages/LeadgenDetailPage';
 const App = () => {
 
 

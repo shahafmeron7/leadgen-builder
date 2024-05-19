@@ -1,31 +1,43 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-const leadgens = [
+import React,{useEffect,useState,useRef} from 'react'
+import LeadgensList from '@/components/LeadgensList'
 
-  {
-    id:'1', title: 'leadgen 1'
-  },
-
-  {
-    id:'2', title: 'leadgen 2'
-  },
-
-  {
-    id:'3', title: 'leadgen 3'
-  }
-]
+const fetchURL = 'http://localhost:5000/api/leadgens'
 const LeadgensPage = () => {
+  const [fetchedLeadgens,setFetchedLeadgens] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
+  const [error,setError] = useState(false);
+  const hasFetched = useRef(false);
+  useEffect(() => {
+    if(hasFetched.current) return;
+    async function fetchLeadgens() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(fetchURL);
+        if (!response.ok) {
+          throw new Error('Fetching leadgens failed.');
+        }
+        const resData = await response.json();
+        setFetchedLeadgens(resData);
+      } catch (error) {
+        setError(error.message);
+      }
+      setIsLoading(false);
+    }
+  
+   fetchLeadgens();
+   hasFetched.current = true;
+
+  }, [])
+  
+
   return (
     <>
     <h1>All Leadgen</h1>
-    <ul>
-      {leadgens.map((leadgen)=>(
-        <li key={leadgen.id}>
-          <Link to={`/leadgens/${leadgen.id}`}>{leadgen.title}</Link>
-        </li>
-      ))}
-    </ul>
-    
+    <div>
+    {isLoading && <p>Loading..</p>}
+    {error && <p>{error}</p>}
+    </div>
+    {!isLoading && fetchedLeadgens && <LeadgensList leadgens={fetchedLeadgens}/>}
     </>
   )
 }
