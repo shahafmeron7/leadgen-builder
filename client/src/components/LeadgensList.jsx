@@ -5,9 +5,10 @@ const LeadgensList = ({leadgens}) => {
   return (
     <>
       {leadgens.map((leadgen)=>(
-        <li key={leadgen.token}>
-          <Link to={`/leadgens/${leadgen.token}`}>{leadgen.title}</Link>
-        </li>
+        <div key={leadgen.token}>
+        <h2>{leadgen.title}</h2>
+          <Link to={`/leadgens/${leadgen.token}`}>View Leadgen</Link>
+        </div>
       ))}
     </>
   )

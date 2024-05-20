@@ -1,9 +1,13 @@
 import React from 'react'
 import { useParams,Link } from 'react-router-dom';
-
+import useFetchData from '@/hooks/useFetchData';
+import { baseURL } from '@/utils/data/url';
 const LeadgenDetailPage = () => {
-   const params = useParams();
-
+   const {leadgenId} = useParams();
+   const {leadgenData,
+    isLoading,
+    error} = useFetchData(baseURL+leadgenId)
+   
   return (
     <>
       <h1>Leadgen Details</h1>

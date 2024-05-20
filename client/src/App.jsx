@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import HomePage from '@/pages/HomePage';
 import LoginPage from '@/pages/LoginPage';
 import AuthenticatedRoute from '@/components/AuthenticatedRoute';
 import MainLayout from '@/pages/MainLayout';
-import LeadgensPage from '@/pages/LeadgensPage';
+import LeadgensPage,{loader as fetchLeadgens} from '@/pages/LeadgensPage';
 import NewLeadgenPage from '@/pages/NewLeadgenPage';
 import ErrorPage from '@/pages/ErrorPage';
 import LeadgenDetailPage from '@/pages/LeadgenDetailPage';
-const App = () => {
+import LeadgensRootLayout from '@/pages/LeadgensRootLayout'
 
+const App = () => {
+  
 
   const router = createBrowserRouter([
     {
@@ -27,22 +29,29 @@ const App = () => {
       errorElement: <ErrorPage/>,
       children:[
         {
-          path:'',
+          index:true,
           element:<HomePage/>
         },
         {
-          path:'/leadgens',
-          element:<LeadgensPage/>
+          path:'leadgens',
+          element: <LeadgensRootLayout/>,
+          children:[
+            {
+              index:true,
+              element:<LeadgensPage/>,
+              loader: fetchLeadgens,
+            },
+            {
+              path:':leadgenId',
+              element:<LeadgenDetailPage/>
+            },
+            {
+              
+                path:'new',
+                element:<NewLeadgenPage/>
+            }
+          ]
         },
-        {
-          path:'/leadgens/:leadgenId',
-          element:<LeadgenDetailPage/>
-        },
-        {
-          
-            path:'/new-leadgen',
-            element:<NewLeadgenPage/>
-        }
       ]
     },
   ]);

@@ -31,7 +31,18 @@ router.get('/', async (req, res) => {
     
   }
 });
-
+//get a leadgen by token
+router.get('/:token', async (req, res) => {
+  try {
+    const leadgen = await Leadgen.findOne({ token: req.params.token });
+    if (!leadgen) {
+      return res.status(404).json({ error: 'Leadgen not found' });
+    }
+    res.status(200).json(leadgen);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 router.put('/:id', async (req, res) => {
   const { title, questions } = req.body;
   const leadgen = await Leadgen.findByIdAndUpdate(req.params.id, { title, questions }, { new: true });
