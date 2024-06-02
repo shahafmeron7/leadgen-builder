@@ -10,18 +10,16 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 userSchema.pre('save', async function (next) {
-  if (this.isModified('password')) {
-    this.password = await bcrypt.hash(this.password, 12);
+  if (!this.isModified('password')) {
+    return next();
   }
-
-  // Generate incremental ID
-  if (this.isNew) {
-    const latestUser = await this.constructor.findOne().sort({ id: -1 });
-    this.id = latestUser ? latestUser.id + 1 : 1;
-  }
-
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  return await bcrypt.compare(candidatePassword, this.password);
+};
 
 const User = mongoose.model('User', userSchema,"users");
 module.exports = User;

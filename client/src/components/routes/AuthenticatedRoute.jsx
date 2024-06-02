@@ -1,11 +1,13 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { isAuthenticated } from '@/auth/auth';
 
 const AuthenticatedRoute = ({ children }) => {
-  if (!isAuthenticated()) {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
     return <Navigate to="/login" />;
   }
+
   return children;
 };
 

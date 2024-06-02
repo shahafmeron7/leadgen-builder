@@ -1,6 +1,6 @@
 import React from 'react'
-import NavigationMenu from '@/components/NavigationMenu'
-import style from './MainLayout.module.css'
+import NavigationMenu from '@/components/navigation/NavigationMenu'
+import style from '../MainLayout.module.css'
 import { useRouteError } from 'react-router-dom'
 
 const ErrorPage = () => {

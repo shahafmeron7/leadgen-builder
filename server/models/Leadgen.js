@@ -22,7 +22,9 @@ const leadgenSchema = new Schema({
   token: { type: String, default: generateToken, unique: true },
   title: { type: String, required: true },
   flowName: { type: String, required: true },
-  questions: [questionSchema]
+  questions: [questionSchema],
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+
 },{
   timestamps: true
 });
