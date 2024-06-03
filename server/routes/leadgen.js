@@ -43,10 +43,10 @@ router.post('/new',authenticateToken, async (req, res) => {
     res.status(500).json({ error: error.message || 'An error occurred while creating the leadgen.' });
   }
 });
-
-router.get('/', async (req, res) => {
+//get all leadgens
+router.get('/',authenticateToken, async (req, res) => {
   try {
-    const leadgens = await Leadgen.find({});
+    const leadgens = await Leadgen.find({ user: req.user.id });
     if(!leadgens){
       return res.status(400).json({ error: 'No leadgens found.' });
     }
@@ -60,8 +60,7 @@ router.get('/', async (req, res) => {
 //get a leadgen by token
 router.get('/:token',authenticateToken, async (req, res) => {
   try {
-    console.log('get leadgen',req.params.token)
-    const leadgen = await Leadgen.findOne({ token: req.params.token });
+    const leadgen = await Leadgen.findOne({ token: req.params.token,user: req.user.id });
     if (!leadgen) {
       return res.status(404).json({ error: 'Leadgen not found' });
     }
@@ -70,12 +69,8 @@ router.get('/:token',authenticateToken, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-// router.put('/:id', async (req,a res) => {
-//   const { title, questions } = req.body;
-//   const leadgen = await Leadgen.findByIdAndUpdate(req.params.id, { title, questions }, { new: true });
-//   res.json(leadgen);
-// });
 
+//delete leadgen by token.
 router.delete('/:token',authenticateToken, async (req, res) => {
   try {
     console.log('In delete:', req.params.token);

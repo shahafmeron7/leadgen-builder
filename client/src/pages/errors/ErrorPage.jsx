@@ -1,7 +1,7 @@
 import React from 'react'
 import NavigationMenu from '@/components/navigation/NavigationMenu'
-import style from '../MainLayout.module.css'
 import { useRouteError } from 'react-router-dom'
+import MainLayout from '@/layouts/MainLayout'
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -10,10 +10,13 @@ const ErrorPage = () => {
   return (
     <>
       <NavigationMenu/>
-      <main className={style.content}>
+      <MainLayout>
+
+    
          <h1>an error occurd</h1>
          <p>{message}</p>
-      </main>
+      
+      </MainLayout>
     </>
   )
 }

@@ -1,0 +1,93 @@
+.profileContainer{
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   cursor: pointer;
+   position: relative;
+}
+.profileIcon{
+   background-color: var(--profile-icon-bg);
+   color:#fff;
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 20px;
+   border-radius: 32px;
+   padding: 13px 8px;
+   width: 36px;
+   height: 36px;
+
+}
+.profileName{
+   display: flex;
+   flex-direction: column;
+}
+.name{
+   display: flex;
+   gap: 3px;
+   align-items: center;
+   font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+}
+.profileRole{
+   font-size: 10px;
+   color: rgba(50, 55, 56, 0.50);
+   font-weight: 400;
+   line-height: 12px;
+letter-spacing: 0.2px;
+}
+.profileName img{
+   
+}
+.chevronOpen {
+   transition: transform 0.3s ease-in-out;
+   transform: rotate(180deg);
+ }
+ 
+ .chevronClosed {
+   transition: transform 0.3s ease-in-out;
+   transform: rotate(0deg);
+ }
+.dropDownMenu{
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   margin-top: 5px;
+   z-index: 1;
+   border-radius: 18px;
+background: #FFF;
+box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 20px;
+display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 236px;
+    width: 300px;
+    padding: 24px;
+}
+.listMenu{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+.menuItem{
+   display: flex;
+   gap: 8px;
+   align-items: center;
+   padding: 12px;
+   font-size: 14px;
+}
+.menuItem:hover{
+   border-radius: 8px;
+   background-color: rgb(246, 246, 247);
+}
+.userIcon{
+   font-size: 24px;
+}
+.userIcon:before{
+   font-family: "Font Awesome 5 Free";
+
+   
+   content: "\e8d8";
+}

@@ -1,0 +1,32 @@
+.listContainer{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+.link{
+   text-decoration: none;
+}
+.listItem{
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   border: 1px solid rgb(234, 235, 236);
+   background-color: #fff;
+   border-radius: 4px;
+   padding: 32px 16px;
+   color: black;
+   font-weight: 500;
+
+}
+.fieldRow{
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+.fieldTitle{
+font-size: 16px;
+}
+.fieldDesc{
+font-size:14px;
+font-weight: 400;
+}

@@ -2,15 +2,14 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import HomePage from '@/pages/homepage/HomePage';
-
+import MainLayout from './layouts/MainLayout';
 import AuthForm from '@/pages/auth/AuthForm';
 import AuthenticatedRoute from '@/components/routes/AuthenticatedRoute';
-import MainLayout from '@/pages/MainLayout';
+
 import LeadgensPage,{loader as fetchLeadgens} from '@/pages/leadgens/LeadgensPage';
 import NewLeadgenPage , {createLeadgenAction} from '@/pages/leadgens/NewLeadgenPage';
 import ErrorPage from '@/pages/errors/ErrorPage';
 import LeadgenDetailPage from '@/pages/leadgens/LeadgenDetailPage';
-import LeadgensRootLayout from '@/pages/leadgens/LeadgensRootLayout'
 import NestedRootLayout from './pages/roots/NestedRootLayout';
 import { leadgensLinks, usersLinks } from './utils/data/links';
 import UsersPage ,{loader as fetchUsers} from '@/pages/users/UsersPage'
@@ -83,7 +82,9 @@ const App = () => {
   ]);
 
   return (
+
     <RouterProvider router={router} />
+
   );
 };
 

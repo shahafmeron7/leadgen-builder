@@ -1,12 +1,11 @@
-import { NavLink , useNavigate} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import style from "./NavigationMenu.module.css";
+import ProfileDropdown from "@/components/profile/ProfileDropdown";
+import useAuth from "@/hooks/useAuth";
 
 const NavigationMenu = () => {
-  const navigate = useNavigate();
-  const handleLogout = ()=>{
-    localStorage.removeItem('token');
-    navigate('/login');
-  }
+  const { isLoggedIn } = useAuth(); 
+
   return (
     <header className={style.header}>
       <nav>
@@ -20,10 +19,12 @@ const NavigationMenu = () => {
           <li>
             <NavLink className={({isActive})=> isActive ? style.active : undefined} to="/users">Users</NavLink>
           </li>
-          <li>
-            <button onClick={handleLogout} className={style.logoutButton}>Logout</button>
-          </li>
+
         </ul>
+        {isLoggedIn() && (
+          <ProfileDropdown/>
+            )}
+       
       </nav>
     </header>
   );

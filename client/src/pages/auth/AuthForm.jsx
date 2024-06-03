@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import styles from './AuthForm.module.css'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { baseAuthURL } from '@/utils/data/url';
-
+import useAuth from '@/hooks/useAuth';
 const AuthForm = () => {
+  const { handleLogin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -29,7 +31,12 @@ const AuthForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', data.token);
+        console.log("userdata",data)
+        const user = {
+          name: data.user.name,
+          email:data.user.email
+        }
+        handleLogin(user, data.token); // Use handleLogin to set the user and token
         navigate('/');
       } else {
         setError(data.message || `${isLogin ? 'Login' : 'Signup'} failed`);
@@ -40,7 +47,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div>
+    <div className={styles.authContainer}>
       <h2>{isLogin ? 'Login' : 'Signup'}</h2>
       <form onSubmit={handleSubmit}>
         {!isLogin && (

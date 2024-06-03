@@ -1,10 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import LeadgensNavigation from '@/components/navigation/LeadgensNavigation'
+import NestedNavigation from '@/components/navigation/NestedNavigation'
 const LeadgensRootLayout = () => {
   return (
     <>
-    <LeadgensNavigation/>
+    <NestedNavigation/>
     
 
     <Outlet/>

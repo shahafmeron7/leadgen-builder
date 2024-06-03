@@ -14,8 +14,15 @@ const LeadgenDetailPage = () => {
     const handleDelete = async () => {
       try {
         console.log(`Attempting to delete leadgen with id: ${leadgenId}`);
-        const res = await fetch(`${baseLeadgensURL}${leadgenId}`, { method: 'DELETE' });
-        console.log('Response:', res);
+        const token = localStorage.getItem('token'); // Get the token from localStorage
+
+        const res = await fetch(`${baseLeadgensURL}${leadgenId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': token, 
+          },
+        });        console.log('Response:', res);
   
         if (!res.ok) {
           const errorData = await res.json();

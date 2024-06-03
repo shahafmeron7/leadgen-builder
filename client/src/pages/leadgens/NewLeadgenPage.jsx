@@ -24,11 +24,13 @@ export async function createLeadgenAction({ request }) {
    };
 
   console.log(leadgenData)
+  const token = localStorage.getItem('token'); 
 
     const response = await fetch(baseLeadgensURL + "new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-auth-token": token
       },
       body: JSON.stringify(leadgenData),
     });

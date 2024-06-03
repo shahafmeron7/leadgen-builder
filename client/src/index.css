@@ -1,14 +1,19 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  --background-color-white:#fff;
+  --background-color-white-2:#F8FAFE;
+  --gray-surface-1:#727574;
+  --gray-surface-2:#B7BAB9;
+  --gray-surface-3:#F2F2F2;
+  --gray-surface-4:#F9F9F9;
+  --border-color-1:#E4E4E5;
+  --text-color-1:#323738;
+  --profile-icon-bg:#003A92;
+
+
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
+  color: var(--text-color-1);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,13 +41,17 @@
 }
 
 
-
+html, body, #root {
+  width: 100%;
+  min-height: 100%;
+}
 body {
   margin: 0;
+  font-family: 'Poppins', sans-serif;
   /* display: flex;
   place-items: center;
   min-width: 320px; */
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 *{

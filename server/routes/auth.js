@@ -6,7 +6,7 @@ const jwtSecret = process.env.JWT_SECRET;
 const router = express.Router();
 router.post('/signup', async (req, res) => {
   try {
-    const { email, password, name, id } = req.body;
+    const { email, password, name } = req.body;
 
     let user = await User.findOne({ email });
     if (user) {
@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
 
     const payload = {
       user: {
-        id: user.id,
+        id: user._id,
       },
     };
 

@@ -1,18 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-const LeadgensList = ({leadgens}) => {
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./LeadgensList.module.css";
+const LeadgensList = ({ leadgens }) => {
   return (
-    <>
-      {leadgens.map((leadgen)=>(
-        <div key={leadgen.token}>
-        <h2>{leadgen.title}</h2>
-        <p>{leadgen.token}</p>
-          <Link to={`/leadgens/${leadgen.token}`}>View Leadgen</Link>
-        </div>
+    <div className={styles.listContainer}>
+      {leadgens.map((leadgen) => (
+        <Link className={styles.link} key={leadgen.token} to={`/leadgens/${leadgen.token}`}>
+          <div className={styles.listItem}>
+            <div className={styles.fieldRow}>
+              <p className={styles.fieldTitle}>Name</p>
+              <p className={styles.fieldDesc}>{leadgen.title}</p>
+            </div>
+            <div className={styles.fieldRow}>
+              <p className={styles.fieldTitle}>Token ID</p>
+              <p className={styles.fieldDesc}>{leadgen.token}</p>
+            </div>
+          </div>
+        </Link>
       ))}
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default LeadgensList
+export default LeadgensList;

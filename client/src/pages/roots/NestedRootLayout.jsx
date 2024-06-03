@@ -1,12 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import CustomNavigation from '../../components/navigation/CustomNavigation'
+import NestedNavigation from '../../components/navigation/NestedNavigation'
 const NestedRootLayout = ({links}) => {
   return (
-    <>
-    <CustomNavigation links={links}/>
+    <div>
+    <NestedNavigation links={links}/>
     <Outlet/>
-    </>
+    </div>
   )
 }
 

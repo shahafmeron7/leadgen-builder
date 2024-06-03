@@ -21,7 +21,6 @@ export default LeadgensPage
 export async function loader(){
 
   const token = localStorage.getItem('token'); 
-  console.log(token);
   const response = await fetch(baseLeadgensURL, {
     method: 'GET',
     headers: {

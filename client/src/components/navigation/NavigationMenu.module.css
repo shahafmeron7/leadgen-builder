@@ -1,9 +1,12 @@
 .header{
  max-width: 60rem;
  margin: auto;
- display: flex;
- justify-content: space-between;
+
  padding: 2rem;
+}
+.header nav{
+   display: flex;
+   justify-content: space-between;
 }
 .list{
 display: flex;
@@ -16,4 +19,8 @@ gap: 1rem;
 .list a:hover,
 .list a.active{
    color: var(--color-primary-800);
+}
+.userContainer{
+   display: flex;
+   gap: 5px;
 }
