@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {jwtDecode} from 'jwt-decode';
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -14,11 +15,20 @@ const useAuth = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
   };
-
+  const isTokenExpired = (token) => {
+    if (!token) return true;
+    const { exp } = jwtDecode(token);
+    return Date.now() >= exp * 1000;
+  };
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
-    if (loggedInUser) {
-      setUser(JSON.parse(loggedInUser));
+    const token = localStorage.getItem('token');
+    if (loggedInUser && token) {
+      if (isTokenExpired(token)) {
+        handleLogout();
+      } else {
+        setUser(JSON.parse(loggedInUser));
+      }
     }
   }, []);
 

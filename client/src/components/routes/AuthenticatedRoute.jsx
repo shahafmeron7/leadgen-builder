@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-
+import useAuth from '@/hooks/useAuth';
 const AuthenticatedRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
+  const { isLoggedIn } = useAuth();
 
-  if (!token) {
+  if (!isLoggedIn()) {
     return <Navigate to="/login" />;
   }
 

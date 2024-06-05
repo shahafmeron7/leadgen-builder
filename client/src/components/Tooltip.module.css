@@ -1,0 +1,54 @@
+.filtersWrapper {
+   display: flex;
+   height: 40px;
+   padding: 8px 14px 8px 12px;
+   align-items: center;
+   border-radius: 8px;
+   cursor: pointer;
+   border: 1px solid var(--primary-primary-15, rgba(0, 58, 146, 0.15));
+   position: relative;
+   background-color: #fff;
+   transition: background-color 0.3s ease-in 0s;
+ }
+ .filtersWrapper:hover{
+   background: #D1DDFF;
+
+ }
+ 
+ .tooltipContainer {
+   margin-top: 10px;
+   position: absolute;
+   top: 100%; /* Adjust this value to control the distance from the filter icon */
+   left: 50%;
+   transform: translateX(-50%);
+   /* width: 80px; */
+   background-color: #000;
+   border-radius: 8px;
+   padding: 8px;
+   font-size: 14px;
+   color: #fff;
+   text-align: center;
+   visibility: hidden;
+   opacity: 0;
+   
+   transition: visibility 0s, opacity 0.3s ease-in-out;
+ }
+
+ 
+ .tooltipContainer.visible {
+   visibility: visible;
+   opacity: 1;
+ }
+ 
+ .tooltipArrow {
+   width: 0;
+   height: 0;
+   border-left: 5px solid transparent;
+   border-right: 5px solid transparent;
+   border-bottom: 5px solid #000;
+   position: absolute;
+   top: -5px;
+   left: 50%;
+   transform: translateX(-50%);
+ }
+ 

@@ -5,7 +5,7 @@ const LeadgensList = ({ leadgens }) => {
   return (
     <div className={styles.listContainer}>
       {leadgens.map((leadgen) => (
-        <Link className={styles.link} key={leadgen.token} to={`/leadgens/${leadgen.token}`}>
+        <Link className={styles.link} key={leadgen.token} to={`/leadgens/details/${leadgen.token}`}>
           <div className={styles.listItem}>
             <div className={styles.fieldRow}>
               <p className={styles.fieldTitle}>Name</p>

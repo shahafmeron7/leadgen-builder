@@ -4,7 +4,7 @@ import NestedNavigation from '@/components/navigation/NestedNavigation'
 const LeadgensRootLayout = () => {
   return (
     <>
-    <NestedNavigation/>
+    {/* <NestedNavigation/> */}
     
 
     <Outlet/>

@@ -1,19 +1,22 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider,Outlet } from 'react-router-dom';
 import './App.css';
 import HomePage from '@/pages/homepage/HomePage';
 import MainLayout from './layouts/MainLayout';
 import AuthForm from '@/pages/auth/AuthForm';
 import AuthenticatedRoute from '@/components/routes/AuthenticatedRoute';
-
+import ContentLayout from './layouts/ContentLayout';
 import LeadgensPage,{loader as fetchLeadgens} from '@/pages/leadgens/LeadgensPage';
 import NewLeadgenPage , {createLeadgenAction} from '@/pages/leadgens/NewLeadgenPage';
 import ErrorPage from '@/pages/errors/ErrorPage';
 import LeadgenDetailPage from '@/pages/leadgens/LeadgenDetailPage';
 import NestedRootLayout from './pages/roots/NestedRootLayout';
-import { leadgensLinks, usersLinks } from './utils/data/links';
+import { leadgensLinks } from '@/utils/data/links';
+import { usersLinks } from '@/utils/data/links';
+
 import UsersPage ,{loader as fetchUsers} from '@/pages/users/UsersPage'
 import UserDetailPage from '@/pages/users/UserDetailPage'
+import AppWrapper from './layouts/AppWrapper';
 const App = () => {
   
 
@@ -30,7 +33,9 @@ const App = () => {
       path: '/',
       element: (
         <AuthenticatedRoute>
+        <AppWrapper>
           <MainLayout />
+        </AppWrapper>
         </AuthenticatedRoute>
       ),
       errorElement: <ErrorPage/>,
@@ -40,25 +45,24 @@ const App = () => {
           element:<HomePage/>
         },
         {
-          path:'leadgens',
-          element: <NestedRootLayout links={leadgensLinks}/>,
-          children:[
+          path: 'leadgens',
+          element:  <Outlet /> ,
+          children: [
             {
-              index:true,
-              element:<LeadgensPage/>,
+              path: 'list',
+              element: <LeadgensPage />,
               loader: fetchLeadgens,
             },
             {
-              path:':leadgenId',
-              element:<LeadgenDetailPage/>
+              path: 'details/:leadgenId',
+              element: <LeadgenDetailPage />,
             },
             {
-              
-                path:'new',
-                element:<NewLeadgenPage/>,
-                action: createLeadgenAction
-            }
-          ]
+              path: 'new',
+              element: <NewLeadgenPage />,
+              action: createLeadgenAction,
+            },
+          ],
         },
         {
           path:'users',

@@ -8,16 +8,18 @@ const ErrorPage = () => {
   let title = 'An error occurd';
   let message = error.status === 500 ? error.data.message : 'Something went wrong';
   return (
-    <>
-      <NavigationMenu/>
+    //TODO: need to present error correctly with main layout. check later
+
       <MainLayout>
 
-    
+    <div>
          <h1>an error occurd</h1>
          <p>{message}</p>
+
+    </div>
       
       </MainLayout>
-    </>
+
   )
 }
 

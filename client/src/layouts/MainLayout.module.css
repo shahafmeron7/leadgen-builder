@@ -1,8 +1,27 @@
+.appWrapper{
+height: 100%;
+}
+.mainView{
+   height: 100%;
+}
+.appMainWrapper{
+   display: flex;
+    min-height: 100%;
+    background-color: rgb(251, 251, 251);
+}
+.mainContentWrapper{
+   display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 50px;
+}
 .mainLayout{
    display: flex;
    flex-direction: column;
    align-items: center;
-   justify-content: center;
+   /* justify-content: center; */
    min-height: 100vh;
    background-color: rgb(251,251,251);
 }

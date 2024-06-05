@@ -2,6 +2,7 @@ import React ,{useState} from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import useFetchData from '@/hooks/useFetchData';
 import { baseLeadgensURL } from '@/utils/data/url';
+import DetailsLayout from '@/layouts/DetailsLayout';
 const LeadgenDetailPage = () => {
    const {leadgenId} = useParams();
    const navigate = useNavigate();
@@ -51,7 +52,7 @@ const LeadgenDetailPage = () => {
   }
 
   return (
-    <>
+    <DetailsLayout pageName="Leadgen details">
       <h1>Leadgen Details</h1>
       <p>id: {data.token}</p>
       <p>Title: {data.title}</p>
@@ -67,12 +68,10 @@ const LeadgenDetailPage = () => {
           </ul>
         </div>
       ))}
-      <p>
-        <Link to=".." onClick={() => navigate(-1)}>Back</Link>
-      </p>
+     
       {deleteError && <p style={{ color: 'red' }}>{deleteError}</p>}
       <button type='button' onClick={handleDelete}>Delete Leadgen</button>
-    </>
+    </DetailsLayout>
   );
 }
 

@@ -1,21 +1,26 @@
-import React from 'react'
-import styles from './MainLayout.module.css'
- import { Outlet } from 'react-router-dom'
+import React from "react";
+import styles from "./MainLayout.module.css";
+import { Outlet } from "react-router-dom";
 
-import NavigationMenu from '@/components/navigation/NavigationMenu'
-const MainLayout = ({children}) => {
+import NavigationMenu from "@/components/navigation/NavigationMenu";
+const MainLayout = ({ children }) => {
   return (
-    <>
-  <NavigationMenu/>
-    <main className={styles.mainLayout}>
-    <Outlet>
-      
-      {children}
+    
+      <div className={styles.mainView}>
+        <div className={styles.appMainWrapper}>
+          <div className={styles.mainContentWrapper}>
+            <NavigationMenu />
+            <main className={styles.mainLayout}>
+              <Outlet>
+                <div className={styles.mainContent}></div>
+                {children}
+              </Outlet>
+            </main>
+          </div>
+        </div>
+      </div>
+    
+  );
+};
 
-    </Outlet>
-    </main>
-    </>
-  )
-}
-
-export default MainLayout
+export default MainLayout;
