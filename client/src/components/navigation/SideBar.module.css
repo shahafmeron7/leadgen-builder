@@ -1,0 +1,101 @@
+.sideNavContainer{
+   height: 100%;
+   display: flex;
+   gap:8px;
+}
+.miniSideNavWrapper{
+   display: flex;
+   height: 100%;
+   min-width: 64px;
+    padding: 24px 16px;
+    align-items: flex-start;
+    border-radius: 16px;
+    border: 1px solid var(--border-surface-border-02, #F4F6FB);
+    background: #FFF;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.04);
+}
+.miniSideList{
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+}
+.expandButton{
+   width: 32px;
+   height: 32px;
+   border-radius: 32px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   border: 1px solid var(--border-surface-border, #DCE3F1);
+   transition: background-color 150ms ease-in;
+}
+.expandButton:hover{
+   background-color: rgba(58, 53, 65, 0.04);
+}
+.miniSideListItem{
+   transition: background-color 0.2s ease-in-out;
+   cursor: pointer;
+   border-radius: 32px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 8px;
+   height: 32px;
+   width: 32px;
+}
+.miniSideListItem:hover{
+   background-color: rgb(251, 74, 74);
+   
+}
+.miniSideListItem.active{
+   background: var(--secondary-primary-20, rgba(224, 47, 116, 0.20));
+}
+
+.expandedNavContainer{
+   display: flex;
+   /* visibility: hidden; */
+   flex-direction: column;
+   /* min-width: 236px; */
+   width: 0;
+   overflow: hidden;
+   /* opacity: 0; */
+    border-radius: 16px;
+    border: none;
+
+    background: #FFF;
+    transition: width 0.2s ease-in, opacity 0.2s ease-in;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.04);
+   }
+   .expanded{
+      border: 1px solid var(--border-surface-border-02, #F4F6FB);
+      width: 236px;
+   /* opacity: 1; */
+}
+.expandedNavTitleContainer{
+   display: flex;
+   gap: 4px;
+   font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 26px;
+   padding: 8px 16px;
+}
+.expandedNavContent{
+
+   border-top: 1px solid var(--border-surface-border-02, #F4F6FB);
+   padding: 24px 16px;
+   height: 100%;
+}
+.expandedNavWrapper{
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+}
+
+.expandedSideList{
+
+}
+.expandedSideListItem{
+
+}

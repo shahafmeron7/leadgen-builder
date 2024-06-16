@@ -3,7 +3,7 @@ import LeadgensList from '@/components/leadgen/LeadgensList'
 import { useLoaderData,redirect,json, Outlet } from 'react-router-dom'
 import { baseLeadgensURL } from '../../utils/data/url'
 import ContentLayout from '@/layouts/ContentLayout'
-
+import api from '@/utils/api/api.js';
 const LeadgensPage = () => {
 
   const fetchedLeadgens = useLoaderData();
@@ -23,11 +23,14 @@ export async function loader(){
 
   const token = localStorage.getItem('token'); 
   if(!token) return redirect('/login')
-  const response = await fetch(baseLeadgensURL, {
+  // const response = await fetch(baseLeadgensURL, {
+    const response = await api(baseLeadgensURL, {
+    
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'x-auth-token': token, 
+      // 'x-auth-token': token, 
+      'Authorization': `Bearer ${token}`,
     },
   });
     if(!response.ok){

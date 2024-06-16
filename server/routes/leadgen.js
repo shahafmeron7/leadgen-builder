@@ -85,4 +85,28 @@ router.delete('/:token',authenticateToken, async (req, res) => {
   }
 });
 
+// Update status of a leadgen by token
+router.patch('/:token/status', authenticateToken, async (req, res) => {
+  try {
+    const { token } = req.params;
+
+    // Find the leadgen by token and user ID
+    const leadgen = await Leadgen.findOne({ token, user: req.user.id });
+    if (!leadgen) {
+      return res.status(404).json({ error: 'Leadgen not found' });
+    }
+
+    // Toggle the status
+    leadgen.status = leadgen.status === 'active' ? 'in-active' : 'active';
+
+    // Save the updated leadgen
+    await leadgen.save();
+
+    res.status(200).json({ message: 'Leadgen status updated successfully', leadgen });
+  } catch (error) {
+    console.error('Error updating leadgen status:', error);
+    res.status(500).json({ error: error.message || 'An error occurred while updating the leadgen status.' });
+  }
+});
+
 module.exports = router;

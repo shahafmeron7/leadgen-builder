@@ -1,0 +1,21 @@
+.searchWrapper{
+   display: flex;
+max-width: 272px;
+min-width: 200px;
+height: 40px;
+padding: 8px;
+align-items: center;
+border-radius: 8px;
+border: 1px solid var(--border-surface-border, #DCE3F1);
+background: #FFF;
+position: relative;
+
+}
+.searchWrapper input{
+   width: 100%;
+   border: none;
+   outline: none;
+   font-family: inherit;
+
+
+}

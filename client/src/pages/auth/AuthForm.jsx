@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styles from "./AuthForm.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { baseAuthURL } from "@/utils/data/url";
-import useAuth from "@/hooks/useAuth";
+import { useAuth } from "@/context/AuthContext";  
 import AppWrapper from "@/layouts/AppWrapper";
 import InputField from "@/components/UI/inputs/InputField";
 import AuthButton from "@/components/UI/buttons/AuthButton";
 const AuthForm = () => {
-  const { handleLogin } = useAuth();
+  const { authenticate, isLoginPending, loginError,isLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState("");
   const [inputErrors, setInputErrors] = useState({});
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const isLogin = location.pathname === "/login";
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
   const validateFields = () => {
     const errors = {};
     if (!email) {
@@ -37,7 +39,10 @@ const AuthForm = () => {
     setInputErrors(errors);
     return Object.keys(errors).length === 0;
   };
-
+  const handleInputChange = (setter, fieldName) => (e) => {
+    setter(e.target.value);
+    setInputErrors((prevErrors) => ({ ...prevErrors, [fieldName]: '' }));
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateFields()) return;
@@ -45,35 +50,9 @@ const AuthForm = () => {
     const endpoint = isLogin ? "login" : "signup";
     const body = isLogin ? { email, password } : { email, password, name };
 
-    try {
-      const response = await fetch(`${baseAuthURL}${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+    await authenticate(endpoint, body);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("userdata", data);
-        const user = {
-          name: data.user.name,
-          email: data.user.email,
-        };
-        handleLogin(user, data.token); // Use handleLogin to set the user and token
-        navigate("/");
-      } else {
-        setError(data.message || `${isLogin ? "Login" : "Signup"} failed`);
-      }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
-    }
-  };
-  const handleInputChange = (setter, fieldName) => (e) => {
-    setter(e.target.value);
-    setInputErrors((prevErrors) => ({ ...prevErrors, [fieldName]: '' }));
+    
   };
   const isDisabled = isLogin
   ? !email || !password
@@ -112,7 +91,7 @@ const AuthForm = () => {
                 required
                 error={inputErrors.password}
               />
-              {error && <p style={{ color: "red" }}>{error}</p>}
+              {loginError && <p style={{ color: "red" }}>{loginError}</p>}
               <AuthButton isDisabled={isDisabled} isLogin={isLogin} />
             </form>
             <p>

@@ -1,5 +1,9 @@
-.filtersWrapper {
-   display: flex;
+ 
+ .iconFilter:hover{
+   background: #D1DDFF;
+ }
+ .iconFilter{
+  display: flex;
    height: 40px;
    padding: 8px 14px 8px 12px;
    align-items: center;
@@ -10,8 +14,22 @@
    background-color: #fff;
    transition: background-color 0.3s ease-in 0s;
  }
- .filtersWrapper:hover{
-   background: #D1DDFF;
+ .iconDoc{
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease-in 0s;
+  /* position: absolute;
+  right: 25px;
+  top: 10px; */
+  /* transform: translateY(-50%); */
+
+ }
+ .iconDoc:hover{
+  background-color: rgb(215, 216, 219);
 
  }
  
@@ -27,6 +45,8 @@
    padding: 8px;
    font-size: 14px;
    color: #fff;
+  z-index: 100;
+
    text-align: center;
    visibility: hidden;
    opacity: 0;

@@ -2,6 +2,7 @@ import React from 'react'
 import UsersList from '@/components/users/UsersList'
 import { useLoaderData,json } from 'react-router-dom'
 import { baseUsersURL } from '@/utils/data/url'
+import api from '@/utils/api/api.js'
 
 const UsersPage = () => {
  
@@ -22,11 +23,12 @@ export async function loader(){
 
   const token = localStorage.getItem('token'); 
   console.log(token);
-  const response = await fetch(baseUsersURL, {
+  const response = await api(baseUsersURL, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'x-auth-token': token, 
+      // 'x-auth-token': token, 
+      'Authorization': `Bearer ${token}`,
     },
   });
     if(!response.ok){

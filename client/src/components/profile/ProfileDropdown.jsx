@@ -4,7 +4,7 @@ import { FaRegUser } from "react-icons/fa";
 import { PiSignOut } from "react-icons/pi";
 
 import styles from "./ProfileDropdown.module.css";
-import useAuth from "@/hooks/useAuth";
+import {useAuth} from "@/context/AuthContext";
 import chevarrow from "@/images/icons/chevarrow.svg?url";
 const ProfileDropdown = () => {
   const navigate = useNavigate();

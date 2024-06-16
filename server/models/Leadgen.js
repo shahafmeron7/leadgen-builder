@@ -24,6 +24,7 @@ const leadgenSchema = new Schema({
   flowName: { type: String, required: true },
   questions: [questionSchema],
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  status: { type: String, default: 'active' }
 
 },{
   timestamps: true

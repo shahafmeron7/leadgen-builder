@@ -17,6 +17,8 @@ import { usersLinks } from '@/utils/data/links';
 import UsersPage ,{loader as fetchUsers} from '@/pages/users/UsersPage'
 import UserDetailPage from '@/pages/users/UserDetailPage'
 import AppWrapper from './layouts/AppWrapper';
+import { AuthProvider } from '@/context/AuthContext';
+
 const App = () => {
   
 
@@ -86,9 +88,9 @@ const App = () => {
   ]);
 
   return (
-
-    <RouterProvider router={router} />
-
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 };
 

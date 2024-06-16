@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import useFetchData from '@/hooks/useFetchData';
 import { baseLeadgensURL } from '@/utils/data/url';
 import DetailsLayout from '@/layouts/DetailsLayout';
+import api from '@/utils/api/api.js';
+
 const LeadgenDetailPage = () => {
    const {leadgenId} = useParams();
    const navigate = useNavigate();
@@ -17,13 +19,13 @@ const LeadgenDetailPage = () => {
         console.log(`Attempting to delete leadgen with id: ${leadgenId}`);
         const token = localStorage.getItem('token'); // Get the token from localStorage
 
-        const res = await fetch(`${baseLeadgensURL}${leadgenId}`, {
+        const res = await api(`${baseLeadgensURL}${leadgenId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'x-auth-token': token, 
+            'Authorization': `Bearer ${token}`,
           },
-        });        console.log('Response:', res);
+        });       
   
         if (!res.ok) {
           const errorData = await res.json();

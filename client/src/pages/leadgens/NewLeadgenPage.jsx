@@ -2,6 +2,7 @@ import { useRouteLoaderData,json,redirect } from "react-router-dom";
 import React from "react";
 import { baseLeadgensURL } from "@/utils/data/url";
 import LeadgenForm from "@/components/leadgen/LeadgenForm";
+import api from "@/utils/api/api.js";
 
 const NewLeadgenPage = () => {
   return (
@@ -26,7 +27,7 @@ export async function createLeadgenAction({ request }) {
   console.log(leadgenData)
   const token = localStorage.getItem('token'); 
 
-    const response = await fetch(baseLeadgensURL + "new", {
+    const response = await api(baseLeadgensURL + "new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

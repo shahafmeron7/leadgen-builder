@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import api from '@/utils/api/api.js';
 
 const useFetchData = (URL) => {
   const [data, setData] = useState(null);
@@ -12,11 +13,12 @@ const useFetchData = (URL) => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token'); 
-        const response = await fetch(URL, {
+        const response = await api(URL, {
           signal,
           headers: {
             'Content-Type': 'application/json',
-            'x-auth-token': token, 
+            // 'x-auth-token': token, 
+            'Authorization': `Bearer ${token}`,
           },
         });
         if (!response.ok) {

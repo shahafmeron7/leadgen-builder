@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import style from "./NavigationMenu.module.css";
 import ProfileDropdown from "@/components/profile/ProfileDropdown";
-import useAuth from "@/hooks/useAuth";
+import {useAuth} from "@/context/AuthContext";
 
 const NavigationMenu = () => {
   const { isLoggedIn } = useAuth();
@@ -39,7 +39,7 @@ const NavigationMenu = () => {
             </NavLink>
           </li>
         </ul>
-        {isLoggedIn() && (
+        {isLoggedIn && (
           <ProfileDropdown />
         )}
       </nav>

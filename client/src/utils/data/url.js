@@ -1,4 +1,4 @@
-export const baseLeadgensURL = 'http://localhost:5000/api/leadgens/';
-export const baseAuthURL = 'http://localhost:5000/api/auth/';
-export const baseUsersURL = 'http://localhost:5000/api/users/';
+export const baseLeadgensURL = 'https://localhost/api/leadgens/';
+export const baseAuthURL = 'https://localhost/api/auth/';
+export const baseUsersURL = 'https://localhost/api/users/';
 
